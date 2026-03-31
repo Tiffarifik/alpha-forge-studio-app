@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Alpha Forge Studio — by The CreaTiff Girl</title>
+<meta name="description" content="Create stunning alphabet sets, custom shapes, and digital products in minutes. Apply designs with one click, bulk export complete sets with auto-generated listing mockups.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=DM+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --magenta: #e91e8c;
+  --magenta-dark: #c4177a;
+  --magenta-glow: rgba(233, 30, 140, 0.18);
+  --teal: #00d9c0;
+  --teal-dark: #00b8a3;
+  --teal-glow: rgba(0, 217, 192, 0.14);
+  --black: #0d0d0f;
+  --dark: #141418;
+  --card: #1a1a20;
+  --card-border: rgba(255,255,255,0.06);
+  --gray-700: #7a7a8a;
+  --gray-400: #a0a0b0;
+  --gray-200: #d4d4de;
+  --white: #f4f4f8;
+  --radius: 16px;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'DM Sans', -apple-system, sans-serif;
+  background: var(--black);
+  color: var(--gray-200);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.6;
+}
+
+.container { max-width: 900px; margin: 0 auto; padding: 0 24px; }
+.container-wide { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+
+/* ─── TOP BAR ─── */
+.topbar {
+  background: linear-gradient(90deg, var(--magenta) 0%, #a020c0 50%, var(--teal) 100%);
+  text-align: center;
+  padding: 11px 16px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  font-family: 'Outfit', sans-serif;
+  color: #fff;
+}
+
+/* ─── NAV ─── */
+nav {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(13,13,15,0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--card-border);
+  padding: 14px 0;
+}
+.nav-inner { display: flex; align-items: center; justify-content: space-between; }
+.nav-logo {
+  font-family: 'Outfit', sans-serif; font-weight: 800; font-size: 20px;
+  color: var(--white); text-decoration: none; letter-spacing: -0.02em;
+}
+.nav-logo span { color: var(--magenta); }
+.nav-links { display: flex; gap: 28px; align-items: center; }
+.nav-links a {
+  color: var(--gray-400); text-decoration: none; font-size: 14px;
+  font-weight: 500; transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--white); }
+
+.btn-buy {
+  display: inline-block; background: var(--magenta); color: #fff;
+  padding: 10px 22px; border-radius: 10px; font-weight: 700; font-size: 14px;
+  text-decoration: none; font-family: 'Outfit', sans-serif;
+  letter-spacing: 0.02em; transition: all 0.25s; border: none; cursor: pointer;
+}
+.btn-buy:hover {
+  background: var(--magenta-dark); transform: translateY(-1px);
+  box-shadow: 0 8px 30px var(--magenta-glow);
+}
+.btn-buy-large { padding: 16px 36px; font-size: 17px; border-radius: 14px; }
+
+.btn-outline {
+  display: inline-block; background: transparent; color: var(--gray-200);
+  padding: 16px 36px; border-radius: 14px; font-weight: 700; font-size: 17px;
+  text-decoration: none; font-family: 'Outfit', sans-serif;
+  border: 2px solid var(--card-border); transition: all 0.25s;
+}
+.btn-outline:hover { border-color: var(--teal); color: var(--teal); }
+
+/* ─── HERO ─── */
+.hero {
+  padding: 100px 0 80px; text-align: center;
+  position: relative; overflow: hidden;
+}
+.hero::before {
+  content: ''; position: absolute;
+  top: -200px; left: 50%; transform: translateX(-50%);
+  width: 900px; height: 600px;
+  background: radial-gradient(ellipse at center, var(--magenta-glow) 0%, transparent 70%);
+  pointer-events: none;
+}
+.hero::after {
+  content: ''; position: absolute;
+  top: -100px; right: -200px;
+  width: 600px; height: 500px;
+  background: radial-gradient(ellipse at center, var(--teal-glow) 0%, transparent 70%);
+  pointer-events: none;
+}
+.hero-badge {
+  display: inline-block;
+  background: rgba(233,30,140,0.12); border: 1px solid rgba(233,30,140,0.25);
+  color: var(--magenta); font-family: 'Outfit', sans-serif;
+  font-size: 12px; font-weight: 700; letter-spacing: 0.1em;
+  text-transform: uppercase; padding: 8px 18px;
+  border-radius: 100px; margin-bottom: 28px;
+}
+.hero h1 {
+  font-family: 'Outfit', sans-serif; font-weight: 900;
+  font-size: clamp(40px, 6vw, 68px); line-height: 1.05;
+  color: var(--white); margin-bottom: 20px;
+  position: relative; z-index: 1;
+}
+.hero h1 .accent { color: var(--magenta); }
+.hero-sub {
+  font-size: 19px; color: var(--gray-400);
+  max-width: 580px; margin: 0 auto 36px;
+  line-height: 1.65; position: relative; z-index: 1;
+}
+.hero-cta {
+  display: flex; gap: 16px; justify-content: center;
+  align-items: center; flex-wrap: wrap;
+  position: relative; z-index: 1;
+}
+.hero-price {
+  margin-top: 18px; font-size: 14px;
+  color: var(--gray-700); position: relative; z-index: 1;
+}
+.hero-price .old-price { text-decoration: line-through; color: var(--gray-700); margin-right: 6px; }
+.hero-price .current-price { color: var(--teal); font-weight: 700; font-size: 16px; }
+
+/* ─── IMAGES ─── */
+.img-frame {
+  width: 100%; border-radius: var(--radius); overflow: hidden;
+  border: 1px solid var(--card-border);
+  background: var(--dark);
+}
+.img-frame img { width: 100%; height: auto; display: block; }
+
+.hero-image {
+  margin: 60px auto 0; max-width: 820px;
+  position: relative; z-index: 1;
+}
+.hero-image .img-frame {
+  box-shadow: 0 20px 80px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.05);
+}
+
+/* ─── SOCIAL PROOF ─── */
+.proof-bar {
+  padding: 40px 0;
+  border-top: 1px solid var(--card-border);
+  border-bottom: 1px solid var(--card-border);
+}
+.proof-inner { display: flex; justify-content: center; gap: 48px; flex-wrap: wrap; }
+.proof-item { text-align: center; }
+.proof-number {
+  font-family: 'Outfit', sans-serif; font-weight: 800; font-size: 28px; color: var(--white);
+}
+.proof-number .teal { color: var(--teal); }
+.proof-label { font-size: 13px; color: var(--gray-700); margin-top: 4px; font-weight: 500; }
+
+/* ─── VIDEO ─── */
+.video-section { padding: 80px 0; }
+.video-section h2 {
+  font-family: 'Outfit', sans-serif; font-weight: 800; font-size: 32px;
+  color: var(--white); text-align: center; margin-bottom: 14px;
+}
+.video-section .sub { text-align: center; color: var(--gray-400); margin-bottom: 40px; font-size: 16px; }
+.video-wrapper {
+  max-width: 780px; margin: 0 auto; border-radius: var(--radius);
+  overflow: hidden; border: 1px solid var(--card-border);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+  position: relative; aspect-ratio: 16/9; background: var(--dark);
+}
+.video-wrapper iframe { width: 100%; height: 100%; border: none; }
+.video-placeholder {
+  width: 100%; height: 100%;
+  display: flex; align-items: center; justify-content: center;
+  flex-direction: column; gap: 12px;
+  color: var(--gray-700); font-family: 'Outfit', sans-serif;
+}
+.play-icon {
+  width: 64px; height: 64px; border-radius: 50%;
+  background: var(--magenta);
+  display: flex; align-items: center; justify-content: center;
+}
+.play-icon svg { fill: #fff; }
+
+/* ─── FEATURES ─── */
+.features { padding: 80px 0; }
+.section-label {
+  font-family: 'Outfit', sans-serif; font-size: 12px; font-weight: 700;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--teal); text-align: center; margin-bottom: 14px;
+}
+.features h2 {
+  font-family: 'Outfit', sans-serif; font-weight: 800; font-size: 36px;
+  color: var(--white); text-align: center; margin-bottom: 56px; line-height: 1.15;
+}
+
+/* Full-width feature blocks */
+.feature-block {
+  margin-bottom: 72px;
+}
+.feature-block-text {
+  text-align: center;
+  max-width: 640px;
+  margin: 0 auto 32px;
+}
+.feature-block-text h3 {
+  font-family: 'Outfit', sans-serif; font-weight: 700; font-size: 26px;
+  color: var(--white); margin-bottom: 12px;
+}
+.feature-block-text p {
+  color: var(--gray-400); font-size: 15px; line-height: 1.7; margin-bottom: 16px;
+}
+.feature-tag {
+  display: inline-block;
+  background: rgba(0,217,192,0.1); border: 1px solid rgba(0,217,192,0.2);
+  color: var(--teal); font-size: 11px; font-weight: 700;
+  font-family: 'Outfit', sans-serif; text-transform: uppercase;
+  letter-spacing: 0.08em; padding: 5px 12px; border-radius: 6px;
+}
+.feature-tag-magenta {
+  background: rgba(233,30,140,0.1); border: 1px solid rgba(233,30,140,0.2);
+  color: var(--magenta);
+}
+.feature-img {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+/* ─── SMALL FEATURE GRID ─── */
+.feature-grid { padding: 40px 0 80px; }
+.grid-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.grid-card {
+  background: var(--card); border: 1px solid var(--card-border);
+  border-radius: 14px; padding: 28px 24px;
+  transition: border-color 0.3s, transform 0.3s;
+}
+.grid-card:hover { border-color: rgba(233,30,140,0.2); transform: translateY(-2px); }
+.grid-card .icon {
+  width: 44px; height: 44px; border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 16px; font-size: 20px;
+}
+.icon-magenta { background: rgba(233,30,140,0.12); }
+.icon-teal { background: rgba(0,217,192,0.12); }
+.icon-purple { background: rgba(160,32,192,0.12); }
+.grid-card h4 {
+  font-family: 'Outfit', sans-serif; font-weight: 700; font-size: 16px;
+  color: var(--white); margin-bottom: 8px;
+}
+.grid-card p { font-size: 14px; color: var(--gray-400); line-height: 1.6; }
+
+/* ─── WHAT'S INCLUDED ─── */
+.included { padding: 80px 0; border-top: 1px solid var(--card-border); }
+.included h2 {
+  font-family: 'Outfit', sans-serif; font-weight: 800; font-size: 32px;
+  color: var(--white); text-align: center; margin-bottom: 48px;
+}
+.included-list {
+  max-width: 600px; margin: 0 auto;
+  display: flex; flex-direction: column; gap: 16px;
+}
+.included-item { display: flex; align-items: flex-start; gap: 14px; font-size: 16px; }
+.included-item .check { color: var(--teal); font-size: 18px; flex-shrink: 0; margin-top: 2px; }
+
+/* ─── CREATOR STORY ─── */
+.story { padding: 80px 0; border-top: 1px solid var(--card-border); }
+.story-text {
+  text-align: center; max-width: 640px; margin: 0 auto 32px;
+}
+.story-text h2 {
+  font-family: 'Outfit', sans-serif; font-weight: 800; font-size: 28px;
+  color: var(--white); margin-bottom: 16px;
+}
+.story-text p { color: var(--gray-400); font-size: 15px; line-height: 1.75; margin-bottom: 14px; }
+.story-img { max-width: 900px; margin: 0 auto; }
+
+/* ─── REQUIREMENTS ─── */
+.req-box {
+  background: var(--card); border: 1px solid var(--card-border);
+  border-radius: 14px; padding: 28px 32px;
+  max-width: 520px; margin: 24px auto 0;
+}
+.req-box h4 {
+  font-family: 'Outfit', sans-serif; font-weight: 700; font-size: 14px;
+  color: var(--white); margin-bottom: 12px;
+  text-transform: uppercase; letter-spacing: 0.06em;
+}
+.req-box p { font-size: 14px; color: var(--gray-400); line-height: 1.7; }
+
+/* ─── FAQ ─── */
+.faq {
+  padding: 60px 0; text-align: center;
+  border-top: 1px solid var(--card-border);
+}
+.faq h2 {
+  font-family: 'Outfit', sans-serif; font-weight: 800; font-size: 28px;
+  color: var(--white); margin-bottom: 16px;
+}
+.faq p { color: var(--gray-400); margin-bottom: 28px; font-size: 15px; }
+.btn-faq {
+  display: inline-block; color: var(--teal);
+  border: 2px solid var(--teal); padding: 14px 32px;
+  border-radius: 12px; font-weight: 700;
+  font-family: 'Outfit', sans-serif; font-size: 15px;
+  text-decoration: none; transition: all 0.25s;
+}
+.btn-faq:hover { background: rgba(0,217,192,0.1); }
+
+/* ─── BOTTOM CTA ─── */
+.bottom-cta {
+  padding: 100px 0; text-align: center;
+  position: relative; overflow: hidden;
+}
+.bottom-cta::before {
+  content: ''; position: absolute;
+  bottom: 0; left: 50%; transform: translateX(-50%);
+  width: 800px; height: 400px;
+  background: radial-gradient(ellipse at center, var(--magenta-glow) 0%, transparent 70%);
+  pointer-events: none;
+}
+.bottom-cta h2 {
+  font-family: 'Outfit', sans-serif; font-weight: 900; font-size: 38px;
+  color: var(--white); margin-bottom: 16px; position: relative; z-index: 1;
+}
+.bottom-cta p {
+  color: var(--gray-400); margin-bottom: 36px; font-size: 17px;
+  position: relative; z-index: 1;
+}
+.bottom-cta .price-block { margin-bottom: 28px; position: relative; z-index: 1; }
+.bottom-cta .old { text-decoration: line-through; color: var(--gray-700); font-size: 22px; margin-right: 10px; }
+.bottom-cta .now {
+  font-family: 'Outfit', sans-serif; font-weight: 900; font-size: 48px; color: var(--white);
+}
+.bottom-cta .license-note { color: var(--gray-700); font-size: 13px; margin-top: 8px; }
+
+/* ─── FOOTER ─── */
+footer {
+  border-top: 1px solid var(--card-border);
+  padding: 40px 0; text-align: center;
+  color: var(--gray-700); font-size: 13px;
+}
+footer a { color: var(--gray-400); text-decoration: none; }
+footer a:hover { color: var(--magenta); }
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 768px) {
+  .grid-cards { grid-template-columns: 1fr; }
+  .proof-inner { gap: 28px; }
+  .nav-links a:not(.btn-buy) { display: none; }
+  .hero { padding: 60px 0 50px; }
+  .hero h1 { font-size: 34px; }
+  .feature-block-text h3 { font-size: 22px; }
+}
+</style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="topbar">Intro Price — Save $98 Today</div>
+
+<!-- NAV -->
+<nav>
+  <div class="container-wide nav-inner">
+    <a href="#" class="nav-logo">Alpha Forge <span>Studio</span></a>
+    <div class="nav-links">
+      <a href="#features">Features</a>
+      <a href="#demo">Demo</a>
+      <a href="#included">What's Included</a>
+      <a href="https://apps.thecreatiffgirl.com/checkout/buy/1ea94f07-c4aa-448b-97af-6effb54a3613" target="_blank" class="btn-buy">Buy Now — $99</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-badge">Built by a Creator with 100,000+ Product Sales</div>
+    <h1>Create Complete Alpha Sets<br>in <span class="accent">Seconds</span>, Not Hours</h1>
+    <p class="hero-sub">Load your templates once. Apply unlimited designs. Bulk export complete A–Z sets with auto-generated listing mockups — ready to sell.</p>
+    <div class="hero-cta">
+      <a href="https://apps.thecreatiffgirl.com/checkout/buy/1ea94f07-c4aa-448b-97af-6effb54a3613" target="_blank" class="btn-buy btn-buy-large">Get Alpha Forge Studio — $99</a>
+      <a href="#demo" class="btn-outline">Watch the Demo</a>
+    </div>
+    <p class="hero-price"><span class="old-price">$197</span> <span class="current-price">$99 — Intro Price</span></p>
+  </div>
+  <div class="hero-image container-wide">
+    <div class="img-frame">
+      <img src="images/COLORPALETTEV2.png" alt="Alpha Forge Studio — main interface with color palette and design tools">
+    </div>
+  </div>
+</section>
+
+<!-- SOCIAL PROOF -->
+<section class="proof-bar">
+  <div class="container-wide proof-inner">
+    <div class="proof-item">
+      <div class="proof-number">A–Z + 0–9</div>
+      <div class="proof-label">Complete Sets in One Click</div>
+    </div>
+    <div class="proof-item">
+      <div class="proof-number"><span class="teal">8+</span></div>
+      <div class="proof-label">Auto-Generated Mockups</div>
+    </div>
+    <div class="proof-item">
+      <div class="proof-number">30 Sec</div>
+      <div class="proof-label">Per Complete Alpha Set</div>
+    </div>
+    <div class="proof-item">
+      <div class="proof-number"><span class="teal">60x</span></div>
+      <div class="proof-label">Faster Than Manual Design</div>
+    </div>
+  </div>
+</section>
+
+<!-- DEMO VIDEO -->
+<section class="video-section" id="demo">
+  <div class="container">
+    <h2>See It In Action</h2>
+    <p class="sub">Watch how Alpha Forge Studio turns hours of work into seconds</p>
+    <div class="video-wrapper">
+      <iframe src="https://www.youtube.com/embed/9Btvy0LskZc" title="Alpha Forge Studio Demo" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="features" id="features">
+  <div class="container-wide">
+    <div class="section-label">Features</div>
+    <h2>Everything You Need to Create &<br>Sell Digital Products Faster</h2>
+
+    <!-- Feature 1: Time Savings (30+ min → 30 sec) -->
+    <div class="feature-block">
+      <div class="feature-block-text">
+        <h3>30+ Minutes → 30 Seconds</h3>
+        <p>No more opening Photoshop for every letter. No more manually positioning each design element, exporting 75 files one by one, renaming and organizing manually, and then repeating the entire process for every color. Alpha Forge does it all in one click.</p>
+        <span class="feature-tag feature-tag-magenta">Time Saver</span>
+      </div>
+      <div class="feature-img img-frame">
+        <img src="images/gallery-05-time-savings.png" alt="30+ minutes without Alpha Forge vs 30 seconds with Alpha Forge — side by side comparison">
+      </div>
+    </div>
+
+    <!-- Feature 2: Bulk Power (10 designs → 10 sets) -->
+    <div class="feature-block">
+      <div class="feature-block-text">
+        <h3>Load 10 Designs → Get 10 Complete Alpha Sets</h3>
+        <p>Drop your designs in, hit export — Alpha Forge generates every letter, number, and symbol for each design automatically. Smart outline colors, custom prefixes and suffixes, subfolder organization, and auto-generated mockups — all in one batch.</p>
+        <span class="feature-tag">Bulk Power</span>
+      </div>
+      <div class="feature-img img-frame">
+        <img src="images/gallery-01-bulk-workflowV2.png" alt="Load 10 designs and get 10 complete alpha sets — bulk workflow">
+      </div>
+    </div>
+
+    <!-- Feature 3: Color Power (20+ variations) -->
+    <div class="feature-block">
+      <div class="feature-block-text">
+        <h3>Turn One Design Into 20+ Product Variations</h3>
+        <p>Save unlimited brand colors to your palette. Change the fill layer color across your entire alpha set, custom shapes, or digital papers — in one click. Export every color variation automatically with auto-organized folders labeled by hex code.</p>
+        <span class="feature-tag">Color Power</span>
+      </div>
+      <div class="feature-img img-frame">
+        <img src="images/colorpowerv2.png" alt="Turn one design into 20+ product variations with the color palette system">
+      </div>
+    </div>
+
+    <!-- Feature 4: Auto Mockups -->
+    <div class="feature-block">
+      <div class="feature-block-text">
+        <h3>Auto-Generate 8 Structured Listing Mockups</h3>
+        <p>Every alpha set export automatically creates 8 professionally formatted listing layouts — ABC preview, full A–Z grid, numbers and symbols, doodle set, and large format. Ready to upload to Etsy or wherever you sell. No Photoshop. No Canva. No extra tools.</p>
+        <span class="feature-tag feature-tag-magenta">Auto Magic</span>
+      </div>
+      <div class="feature-img img-frame">
+        <img src="images/gallery-03-auto-mockupsvfinal.png" alt="8 auto-generated listing mockup layouts created during export">
+      </div>
+    </div>
+
+    <!-- Feature 5: Pro Formats -->
+    <div class="feature-block">
+      <div class="feature-block-text">
+        <h3>Use Your Existing Files — Export What Customers Want</h3>
+        <p>Import PSD, PNG, and SVG files you already have. Export as layered PSD with separated outlines and fills, or high-quality transparent PNG — perfect for digital products, mockups, and listings. The built-in Prepare Set tool organizes your files automatically.</p>
+        <span class="feature-tag">Pro Formats</span>
+      </div>
+      <div class="feature-img img-frame">
+        <img src="images/gallery-07-formats__1_.png" alt="Import PSD, PNG, SVG — export layered PSD or high-quality PNG">
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- SMALL FEATURE GRID -->
+<section class="feature-grid">
+  <div class="container-wide">
+    <div class="grid-cards">
+      <div class="grid-card">
+        <div class="icon icon-magenta">🗂</div>
+        <h4>Collections System</h4>
+        <p>Organize your alpha sets into collections with dropdown filtering. Find any set instantly.</p>
+      </div>
+      <div class="grid-card">
+        <div class="icon icon-teal">💎</div>
+        <h4>Border Patterns</h4>
+        <p>Add pearl, diamond, and rhinestone borders that follow the exact contour of each letter.</p>
+      </div>
+      <div class="grid-card">
+        <div class="icon icon-purple">🎨</div>
+        <h4>Outline Blend Modes</h4>
+        <p>Soft Light, Glossy Bright, Overlay, Multiply, and Color HSL with adjustable opacity.</p>
+      </div>
+      <div class="grid-card">
+        <div class="icon icon-magenta">✂️</div>
+        <h4>Auto Trim & Organize</h4>
+        <p>Transparent edge trimming, subfolder organization, and custom file naming — all automatic.</p>
+      </div>
+      <div class="grid-card">
+        <div class="icon icon-teal">🦋</div>
+        <h4>Custom Shapes</h4>
+        <p>Not just alphabets — butterflies, hearts, paws, frames, and any shape template you create.</p>
+      </div>
+      <div class="grid-card">
+        <div class="icon icon-purple">✏️</div>
+        <h4>Word Builder Mode</h4>
+        <p>Spell out words and phrases using your custom alpha set designs. Perfect for previews and marketing.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT'S INCLUDED -->
+<section class="included" id="included">
+  <div class="container">
+    <h2>What's Included</h2>
+    <div class="included-list">
+      <div class="included-item"><span class="check">✓</span><span>Alpha Forge Studio desktop application (Windows)</span></div>
+      <div class="included-item"><span class="check">✓</span><span>TCG Alpha Sets sample collection — start creating immediately</span></div>
+      <div class="included-item"><span class="check">✓</span><span>Free embroidery alpha set sample</span></div>
+      <div class="included-item"><span class="check">✓</span><span>8+ auto-generated mockup templates</span></div>
+      <div class="included-item"><span class="check">✓</span><span>Built-in Prepare Set tool + PSD/SVG converter</span></div>
+      <div class="included-item"><span class="check">✓</span><span>Folder Structure Guide (PDF)</span></div>
+      <div class="included-item"><span class="check">✓</span><span>Complete README with setup instructions</span></div>
+      <div class="included-item"><span class="check">✓</span><span>1 year of free updates</span></div>
+      <div class="included-item"><span class="check">✓</span><span>Email support from the developer</span></div>
+      <div class="included-item"><span class="check">✓</span><span><strong>BONUS:</strong> Etsy Listing Swipe File PDF</span></div>
+    </div>
+    <div class="req-box">
+      <h4>Requirements</h4>
+      <p>Windows 10 or later • Internet connection for license activation (works offline after, re-validates every 14 days) • License valid on up to 2 devices • 1 year of free updates included</p>
+    </div>
+  </div>
+</section>
+
+<!-- CREATOR STORY -->
+<section class="story">
+  <div class="container-wide">
+    <div class="story-text">
+      <h2>Built by a Creator, for Creators</h2>
+      <p>Alpha Forge Studio was built by The CreaTiff Girl — a digital product creator and developer with 100,000+ combined sales across Etsy and Amazon Merch. Every feature exists because it solved a real problem in the creator workflow.</p>
+    </div>
+    <div class="story-img img-frame">
+      <img src="images/gallery-08-creator-story.png" alt="Built by a creator with 100,000+ product sales — The CreaTiff Girl">
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq">
+  <div class="container">
+    <h2>Questions?</h2>
+    <p>Check out the full FAQ for details on licensing, requirements, refund policy, and more.</p>
+    <a href="https://tiffarifik.github.io/alpha-forge-faq/" target="_blank" class="btn-faq">Read the FAQ →</a>
+  </div>
+</section>
+
+<!-- BOTTOM CTA -->
+<section class="bottom-cta" id="buy">
+  <div class="container">
+    <h2>Stop Designing One Letter at a Time</h2>
+    <p>Complete alpha sets in 30 seconds. Mockups generated automatically. Ready to sell.</p>
+    <div class="price-block">
+      <span class="old">$197</span>
+      <span class="now">$99</span>
+      <p class="license-note">One-time payment • Lifetime license • 2 devices</p>
+    </div>
+    <a href="https://apps.thecreatiffgirl.com/checkout/buy/1ea94f07-c4aa-448b-97af-6effb54a3613" target="_blank" class="btn-buy btn-buy-large">Get Alpha Forge Studio — $99</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <p>Alpha Forge Studio — by <a href="https://thecreatiffgirl.com" target="_blank">The CreaTiff Girl</a> / Hustle Heart Design Co.</p>
+    <p style="margin-top:8px;">© 2026 The CreaTiff Girl. All rights reserved.</p>
+  </div>
+</footer>
+
+</body>
+</html>
